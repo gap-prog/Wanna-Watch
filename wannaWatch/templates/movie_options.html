@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="movie-wrapper">
+        <div class="movie-content">
+            <div style="margin-bottom: 1rem">
+                <small>
+                    Information courtesy of
+                    IMDb
+                    (<a href="https://www.imdb.com/">https://www.imdb.com</a>).
+                    Used with permission.
+                    Non-commercial use.
+                </small>
+            </div>
+            {% for imdbid in movies %}
+                <div class="movie">
+                    <div class="movie-head">
+                        <img class="circle" src="{{ movies[imdbid]['image'] }}" alt="IMDB Image">
+                        <h1>
+                            {{ movies[imdbid]["title"] }}
+                        </h1>
+                    </div>
+                    <div class="movie-sub-info">
+                        <span>
+                            {{ " • ".join(movies[imdbid]["genres"].split(",")) }} | {{ movies[imdbid]["content_rating"] }} | {{ movies[imdbid]["user_rating"] }}
+                        </span>
+                    </div>
+                    <p id="cast-info"><strong>Cast: {{ " • ".join(movies[imdbid]["cast"].split(",")) }}</strong></p>
+                    <p><strong>Plot</strong>: {{ movies[imdbid]["plot"] }}</p>
+                    <a href="{{ url_for('posts.create_post', movie=imdbid) }}" class="link create-post">
+                        <u>Create Post</u>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

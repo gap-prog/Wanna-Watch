@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-section">
+            <h1>
+                Add Participants
+            </h1>
+            <form method="POST", action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group-main">
+                    <div class="form-group">
+                        {{ form.participants.label }}
+                        {{ form.participants (class="form-control") }}
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="form-submit") }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

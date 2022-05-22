@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="home-container">
+        <div class="home-info">
+            <h1>
+                Tired of trying to agree to a movie?
+            </h1>
+            <p>
+                If you are tired trying to agree to watch a movie with a group, then WannaWatch has you covered. Our website allows you to find a movie easily and then ask your group when or if you want to watch it!
+            </p>
+            <a href="{{ url_for('users.register') }}" class="link nav-text btn">
+                Get started today!
+            </a>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+        <link rel="icon" type="image/jpg" href="{{ url_for('static', filename='w.png') }}">
+        <title>
+            {% if title %}
+                {{ title }}
+            {% else %}
+                Wanna Watch?
+            {% endif %}
+        </title>
+    </head>
+    <body>
+        <header>
+            <nav class="nav">
+                <img src="{{ url_for('static', filename='wannawatch.png') }}", alt="Wanna Watch? Logo" class="hero-img">
+                <div>
+                    <strong class="first">
+                        <a href="{{ url_for('main.home') }}" class="link nav-text nav-link">
+                            Home
+                        </a>
+                    </strong>
+                    {% if current_user.is_authenticated %}
+                        <strong>
+                            <a href="{{ url_for('users.dashboard') }}" class="link nav-text nav-link">
+                                Dashboard
+                            </a>
+                        </strong>
+                    {% endif %}
+                </div>
+                <div>
+                    {% if current_user.is_authenticated %}
+                        <div id="login-flex">
+                            <strong>
+                                <p class="nav-text first">
+                                    Hi, {{ current_user.username }}!
+                                </p>
+                            </strong>
+                            <strong>
+                                <a href="{{ url_for('users.logout') }}" class="link nav-text nav-link">
+                                    Logout
+                                </a>
+                            </strong>
+                        </div>
+                    {% else %}
+                        <strong>
+                            <a href="{{ url_for('users.login') }}" class="link nav-text nav-link first">
+                                Login
+                            </a>
+                        </strong>
+                        <strong>
+                            <a href="{{ url_for('users.register') }}" class="link nav-text btn">
+                                Register
+                            </a>
+                        </strong>
+                    {% endif %}
+                </div>
+            </nav>
+        </header>
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>

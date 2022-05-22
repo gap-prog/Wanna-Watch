@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-section">
+            <h1>
+                Register
+            </h1>
+            <form method="POST", action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group-main">
+                    <div class="form-group">
+                        {{ form.username.label }}
+                        {{ form.username(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email.label }}
+                        {{ form.email(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label }}
+                        {{ form.password(class="form-control") }}
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="form-submit") }}
+                    <small class="text-muted ml-2">
+                        Already have an account? 
+                        <a href="{{ url_for('users.login') }}" class="small-link">
+                            Login
+                        </a>
+                    </small>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

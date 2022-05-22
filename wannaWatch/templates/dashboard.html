@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="dashboard-wrapper">
+        <div class="dashboard-content">
+            <div class="search">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    {{ form.title(class="search-bar", placeholder="Search movie or TV show title to start creating a post") }}
+                </form>
+            </div>
+            <div class="movies-part">
+                <h1 style="margin-bottom: 0.5rem;">
+                    Your upcoming movies
+                </h1>
+                <div style="margin-bottom: 1rem">
+                    <small>
+                        Information courtesy of
+                        IMDb
+                        (<a href="https://www.imdb.com/">https://www.imdb.com</a>).
+                        Used with permission.
+                        Non-commercial use.
+                    </small>
+                </div>
+                {% for i in range(form2_list|length) %}
+                    <div class="movie">
+                        <div class="movie-head">
+                            <img class="circle" src="{{ movies[movie_keys[i]][0]['image'] }}" alt="IMDB Image">
+                            <h1>
+                                {{ movies[movie_keys[i]][0]["title"] }}
+                            </h1>
+                        </div>
+                        <div class="movie-sub-info">
+                            <span>
+                                {{ " • ".join(movies[movie_keys[i]][0]["genres"].split(",")) }} | {{ movies[movie_keys[i]][0]["content_rating"] }} | {{ movies[movie_keys[i]][0]["user_rating"] }}
+                            </span>
+                        </div>
+                        <p id="cast-info"><strong>Cast: {{ " • ".join(movies[movie_keys[i]][0]["cast"].split(",")) }}</strong></p>
+                        <p><strong>Plot</strong>: {{ movies[movie_keys[i]][0]["plot"] }}</p>
+                        <br>
+                        <form method="POST", action="">
+                            {{ form2_list[i].hidden_tag() }}
+                            {{ form2_list[i].values(class="") }}
+                            {{ form2_list[i].submit(id=i, value=i) }}
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
